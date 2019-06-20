@@ -5,6 +5,7 @@
 package yxxy.c_026;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
@@ -17,12 +18,13 @@ public class T07_ParallelComputing {
 		long start = System.currentTimeMillis();
 		List<Integer> results = getPrime(1, 200000); 
 		long end = System.currentTimeMillis();
-		System.out.println(end - start);
+		System.out.println("no thread--- >>>" + (end - start) + " size: " + results.size());
 		
 		final int cpuCoreNum = 4;
 		
 		ExecutorService service = Executors.newFixedThreadPool(cpuCoreNum);
-		
+
+		//分段和质数计算有关 数值越大  判断该数是否为质数计算越大
 		MyTask t1 = new MyTask(1, 80000); //1-5 5-10 10-15 15-20
 		MyTask t2 = new MyTask(80001, 130000);
 		MyTask t3 = new MyTask(130001, 170000);
@@ -34,12 +36,14 @@ public class T07_ParallelComputing {
 		Future<List<Integer>> f4 = service.submit(t4);
 		
 		start = System.currentTimeMillis();
-		f1.get();
-		f2.get();
-		f3.get();
-		f4.get();
+		List<Integer> res = new ArrayList<>();
+		res.addAll(f1.get());
+		res.addAll(f2.get());
+		res.addAll(f3.get());
+		res.addAll(f4.get());
 		end = System.currentTimeMillis();
-		System.out.println(end - start);
+		res.forEach(item->System.out.println(item));
+		System.out.println("---->>> thread: "+ (end - start) + "size: " + res.size());
 	}
 	
 	static class MyTask implements Callable<List<Integer>> {

@@ -19,7 +19,7 @@ public class T06_Future {
 		}); //new Callable () { Integer call();}
 		
 		new Thread(task).start();
-		
+
 		System.out.println(task.get()); //×èÈû
 		
 		//*******************************
@@ -28,6 +28,7 @@ public class T06_Future {
 			TimeUnit.MILLISECONDS.sleep(500);
 			return 1;
 		});
+		System.out.println(f.isDone());
 		System.out.println(f.get());
 		System.out.println(f.isDone());
 		
