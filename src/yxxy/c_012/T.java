@@ -24,8 +24,7 @@ public class T {
 	void m() {
 		System.out.println("m start");
 		while(running) {
-			/*
-			try {
+	/*		try {
 				TimeUnit.MILLISECONDS.sleep(10);
 			} catch (InterruptedException e) {
 				e.printStackTrace();

@@ -17,7 +17,7 @@ public class T {
 		}
 		m2();
 	}
-	
+
 	synchronized void m2() {
 		try {
 			TimeUnit.SECONDS.sleep(2);
@@ -25,5 +25,11 @@ public class T {
 			e.printStackTrace();
 		}
 		System.out.println("m2");
+	}
+
+	public static void main(String[] args) {
+		T t = new T();
+		new Thread(t::m1,"t9").start();
+
 	}
 }

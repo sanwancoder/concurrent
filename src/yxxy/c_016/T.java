@@ -6,14 +6,11 @@
  */
 package yxxy.c_016;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.TimeUnit;
-import java.util.concurrent.atomic.AtomicInteger;
 
 
 public class T {
-	
+
 	int count = 0;
 
 	synchronized void m1() {
@@ -25,7 +22,7 @@ public class T {
 		}
 		//业务逻辑中只有下面这句需要sync，这时不应该给整个方法上锁
 		count ++;
-		
+
 		//do sth need not sync
 		try {
 			TimeUnit.SECONDS.sleep(2);
@@ -33,7 +30,7 @@ public class T {
 			e.printStackTrace();
 		}
 	}
-	
+
 	void m2() {
 		//do sth need not sync
 		try {
@@ -54,6 +51,6 @@ public class T {
 		}
 	}
 
-	
+
 
 }
